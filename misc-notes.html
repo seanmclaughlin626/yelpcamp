@@ -1,0 +1,55 @@
+<!-- 
+    Some basic types of attacks:
+    --------------------------------------------------------
+
+    - Injections: adding a database query to gain information and/or 
+    tank your site. Solution? Mongo sanitation (see app.js)
+
+    - Cross-site scripting or XSS: Injection of the attacker's own 
+    client-side script on your app. Can do bad shit like report user's
+    cookies, steals their info, maybe even controls their actions. Use
+    XSS game to learn more about how it works. Solution? Use JOI to
+    sanitize the HTML. Our main weakness against this is when we pass
+    our campground in as javascript for our mapbox. We can also use
+    express validator for sanitization/html escaping, but we're using 
+    JOI because Colt hates the syntax lmao. JOI lets us create
+    extensions that we can attach to our validation (see schemas.js).
+
+    - We can also fix how we handle sessions/cookies for added protection. 
+    Add "secure: true," under cookie settings in sessionConfig (however,
+    localhost isn't https so this will break shit for now). We can also 
+    get an easy win by manually naming our session. 
+
+    - We also want to hide our errors when deploying, not include a stack 
+    trace like we do in development. We can easily do this with an if/then
+    slid into error.ejs
+
+    - The package Helmet has 15 different middlewares for the purpose of 
+    manipulating headers. app.use(helmet()) automatically uses all of them.
+    At first we will disable content secureity policy because a lot of our
+    images, maps, etc. violate it by default. Keep in mind the crossorigin
+    fix. 
+
+    Deploying 
+    --------------------------------------------------------
+
+    - We set up a production database seperate from a development database
+    that isn't kept locally. We will be using MongoDB Atlas (paid but has
+    a free tier). Set up a cluster, fetch a link to connect it, put it in
+    the .env file, set up a seperate connection in app.js
+
+    - Next we configure our app to store session info using mongo, as it
+    defaults to storing in memory (bad!! scales poorly). We use the 
+    connect-mongo package for this. See the mongostore and store seetup 
+    in app.js
+
+    - ACTUAL DEPLOYMENT TIME, let's use Heroku to store/serve our app (with
+    its free tier of course). Heroku tends to be the friendliest for
+    beginners to deploy things like express apps. Once everything is
+    installed and set up, open git bash and type in heroku login to log in
+
+    - Use heroku create in git bash to make an app/url in heroku. Then
+    git init to make a repository, then heroku git:remote -a <name of app>,
+    then git remove -v 
+
+ -->

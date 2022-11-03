@@ -50,6 +50,17 @@
 
     - Use heroku create in git bash to make an app/url in heroku. Then
     git init to make a repository, then heroku git:remote -a <name of app>,
-    then git remove -v 
+    then git remote -v to fetch a url that we can push our code up to. 
+    SET YOUR GIT EMAIL AND USERNAME. Then type git add . and
+    git commit -m "ready to try deploying", then git push heroku master. 
+    We will be greeted with an error (oh joy!)
+
+    - Our error was heroku logs --tail, which we put into git bash and can
+    see that we lack a way to start the app! (Heroku is silly and doesn't
+    know how to type nodemon app.js like us superior fleshy boys). We can 
+    add this nto our package.json scripts to fix this. *Side note, you're 
+    not supposed to have uppercase letters in your app name as it is read
+    by the computer. We also need to tweak our port that we listen on,
+    since heroku defaults to a certain value (not 3000)
 
  -->

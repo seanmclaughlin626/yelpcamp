@@ -61,6 +61,16 @@
     add this nto our package.json scripts to fix this. *Side note, you're 
     not supposed to have uppercase letters in your app name as it is read
     by the computer. We also need to tweak our port that we listen on,
-    since heroku defaults to a certain value (not 3000)
+    since heroku defaults to a certain value (not 3000). Next error is 
+    "cannot create client without a token" seen after running app.js, which
+    means the app runs, but they could not connect to a definted access token,
+    which we can handle by configuring our heroku environment variables.
+
+    - You can set env variables on the heroku website, or in your command
+    line using heroku config:set <var name>=<key>
+
+    - Make sure to whitelist all IP addresses on the atlas side of things,
+    make sure to add/commit/git push heroku master any changes you make,
+    also properly configure your env variables. 
 
  -->
